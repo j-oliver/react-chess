@@ -1,2 +1,8 @@
 # react-chess
-Chess, implemented with React
+
+A simple chessboard to play chess on.
+
+Run it with:
+
+$ yarn install
+$ yarn start
