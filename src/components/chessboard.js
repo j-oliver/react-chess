@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import Field from './field';
 
-// import King from './king';
-// import Queen from './queen';
-// import Rook from './rook';
-// import Knight from './knight';
-// import Bishop from './bishop';
-// import Pawn from './pawn';
+import chessUtils from './utility';
 
 class Chessboard extends Component {
   constructor(props){
@@ -14,12 +9,18 @@ class Chessboard extends Component {
     this.state = {
       turn: 'white',
       moves: [],
-      board: this.initBoard()
+      board: this.initBoard(),
+      highlightedFields: []
     };
+
+    this._showMoves = this._showMoves.bind(this);
+    this._getField = this._getField.bind(this);
   }
 
+
+
   initBoard(){
-    const startboard = [
+    return [
       ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
       ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
       ['', '', '', '', '', '', '', ''],
@@ -29,65 +30,49 @@ class Chessboard extends Component {
       ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
       ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'],
     ];
-
-    return startboard.map((row, row_index) => {
-      return row.map((piece, col_index) => {
-        const chessPosition = this.indicesToChessNotation(row_index, col_index);
-        const fieldColor = this.getFieldColor(row_index, col_index);
-        const pieceColor = this.getPieceColor(piece);
-
-        return <Field key={chessPosition} name={piece} fieldColor={fieldColor} pieceColor={pieceColor}/>;
-      });
-    });
   }
 
-  chessNotationToIndices(chessnotation) {
-    const cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-    const rows = ['8', '7', '6', '5', '4', '3', '2', '1'];
-    const indices = chessnotation.split('');
-
-    return {
-      col: cols.indexOf(indices[0]),
-      row: rows.indexOf(indices[1]),
-    }
+  _showMoves(moves) {
+    this.setState({ highlightedFields: moves });
   }
 
-  indicesToChessNotation(row, col) {
-    const cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-    const rows = ['8', '7', '6', '5', '4', '3', '2', '1'];
-
-    return cols[col] + rows[row];
-  }
-
-  getPieceColor(piece) {
-    if (piece === '') return undefined;
-
-    return piece.toUpperCase() === piece ? 'white' : 'black';
-  }
-
-  getFieldColor(row, col) {
-    return (row % 2) === (col % 2) ? 'light' : 'dark';
-  }
-
-  getField(row, col) {
+  _getField(row, col) {
+    // if (!chessUtils.fieldInBoard(row, col)) return undefined;
     return this.state.board[row][col];
   }
 
   getFieldByChessNotation(chessnotation) {
-    const indices = this.chessNotationToIndices(chessnotation);
+    const indices = chessUtils.chessNotationToIndices(chessnotation);
     return this.state.board[indices.row][indices.col];
   }
+
+  getBoard(){
+    return this.state.board.map((row, row_index) => {
+      return <div key={row_index} className='chessboard__row'>
+        {
+         row.map((piece, col_index) => {
+            const chessPosition = chessUtils.indicesToChessNotation(row_index, col_index);
+            const fieldColor = chessUtils.getFieldColor(row_index, col_index);
+            const highlighted = this.state.highlightedFields.indexOf(chessPosition) !== -1;
+
+            return <Field key={chessPosition}
+                          name={piece}
+                          highlighted={highlighted}
+                          position={chessPosition}
+                          fieldColor={fieldColor}
+                          getField={(row, col) => this._getField(row, col)}
+                          onPieceClick={(moves)=> this._showMoves(moves)}/>;
+         }, this)
+       }
+      </div>
+    }, this);
+  }
+
 
   render() {
     return (
       <div className='chessboard'>
-        {
-          this.state.board.map((row, index) => (
-            <div key={index} className='chessboard__row'>
-             {row}
-            </div>
-          ))
-        }
+        { this.getBoard() }
       </div>
     )
   }
