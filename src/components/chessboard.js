@@ -47,7 +47,7 @@ class Chessboard extends Component {
   }
 
   getBoard(){
-    return this.state.board.map((row, row_index) => {
+    let fullBoard = this.state.board.map((row, row_index) => {
       return <div key={row_index} className='chessboard__row'>
         {
          row.map((piece, col_index) => {
@@ -66,6 +66,12 @@ class Chessboard extends Component {
        }
       </div>
     }, this);
+
+    if(this.props.color === 'black') {
+      fullBoard = fullBoard.reverse();
+    }
+
+    return fullBoard;
   }
 
 
