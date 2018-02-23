@@ -9,37 +9,48 @@ import Pawn from './pawn';
 
 
 class Field extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      highlighted: false
-    }
-
-    this.highlight = this.highlight.bind(this);
-  }
-
   getPiece() {
     switch(this.props.name.toLowerCase()) {
-      case 'k': return <King color={this.props.pieceColor}/>;
-      case 'q': return <Queen color={this.props.pieceColor}/>;
-      case 'r': return <Rook color={this.props.pieceColor}/>;
-      case 'b': return <Bishop color={this.props.pieceColor}/>;
-      case 'n': return <Knight color={this.props.pieceColor}/>;
-      case 'p': return <Pawn color={this.props.pieceColor}/>;
+      case 'k':
+        return <King name={this.props.name}
+                     onPieceClick={this.props.onPieceClick}
+                     position={this.props.position}
+                     getField={this.props.getField}/>;
+      case 'q':
+        return <Queen name={this.props.name}
+                     onPieceClick={this.props.onPieceClick}
+                     position={this.props.position}
+                     getField={this.props.getField}/>;
+      case 'r':
+        return <Rook name={this.props.name}
+                     onPieceClick={this.props.onPieceClick}
+                     position={this.props.position}
+                     getField={this.props.getField}/>;
+      case 'b':
+        return <Bishop name={this.props.name}
+                     onPieceClick={this.props.onPieceClick}
+                     position={this.props.position}
+                     getField={this.props.getField}/>;
+      case 'n':
+        return <Knight name={this.props.name}
+                     onPieceClick={this.props.onPieceClick}
+                     position={this.props.position}
+                     getField={this.props.getField}/>;
+      case 'p':
+        return <Pawn name={this.props.name}
+                     onPieceClick={this.props.onPieceClick}
+                     position={this.props.position}
+                     getField={this.props.getField}/>;
       default: return undefined;
     }
   }
 
-  highlight() {
-    this.setState({ highlighted: true });
-  }
-
   render(){
     return (
-      <div className={`field ${this.props.fieldColor}`} onClick={this.highlight}>
+      <div className={`field ${this.props.fieldColor}`}>
         { this.getPiece() }
         {
-          this.state.highlighted
+          this.props.highlighted
           ? <div className='highlight'/>
           : undefined
         }
