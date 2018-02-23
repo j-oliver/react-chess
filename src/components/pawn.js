@@ -46,11 +46,11 @@ class Pawn extends Piece {
         moves.push(doubleForward);
       }
     }
-    if (!chessUtils.isFieldBlockedByColor(beatRightField, color)
+    if (beatRightField && !chessUtils.isFieldBlockedByColor(beatRightField, color)
       && chessUtils.isFieldOccupied(beatRightField)) {
       moves.push(beatRight);
     }
-    if (!chessUtils.isFieldBlockedByColor(beatLeftField, color)
+    if (beatLeftField && !chessUtils.isFieldBlockedByColor(beatLeftField, color)
       && chessUtils.isFieldOccupied(beatLeftField)) {
       moves.push(beatLeft);
     }
