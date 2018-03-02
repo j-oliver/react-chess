@@ -10,12 +10,8 @@ class Piece extends Component {
 
   onPieceClick() {
     const moves = this.getAllMoves();
-
     this.props.onPieceClick(moves);
-  }
-
-  getColor(){
-    return chessUtils.getPieceColor(this.props.name);
+    this.props.select(this.props.name, this.props.position);
   }
 
   getAllMoves() {
