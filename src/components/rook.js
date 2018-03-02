@@ -9,7 +9,7 @@ class Rook extends Piece {
   moves(row, col) {
     const rook = this;
     const moves = [];
-    const color = this.getColor();
+    const color = this.props.color;
     const directions = {
       up: { y: -1, x: 0 },
       down: { y: 1, x: 0 },
@@ -52,7 +52,7 @@ class Rook extends Piece {
   }
 
   render() {
-    const image = this.getColor() === 'white' ? rook_white : rook_black;
+    const image = this.props.color === 'white' ? rook_white : rook_black;
     return (
       <div className='rook' onClick={this.onPieceClick}>
         <img src={image} alt='rook'/>

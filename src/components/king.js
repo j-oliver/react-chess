@@ -18,7 +18,7 @@ class King extends Piece {
       [row + 1, col + 1], // rightdown
     ];
 
-    const color = this.getColor();
+    const color = this.props.color;
     const king = this;
 
     moves = moves.filter(move => {
@@ -40,7 +40,7 @@ class King extends Piece {
   }
 
   render() {
-    const image = this.getColor() === 'white' ? king_white : king_black;
+    const image = this.props.color === 'white' ? king_white : king_black;
     return (
       <div className='king' onClick={this.onPieceClick}>
         <img src={image} alt='king'/>

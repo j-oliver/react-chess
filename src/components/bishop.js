@@ -9,7 +9,7 @@ class Bishop extends Piece {
   moves(row, col) {
     const bishop = this;
     const moves = [];
-    const color = this.getColor();
+    const color = this.props.color;
     const directions = {
       leftup: { y: -1, x: -1 },
       leftdown: { y: 1, x: -1 },
@@ -52,7 +52,7 @@ class Bishop extends Piece {
   }
 
   render() {
-    const image = this.getColor() === 'white' ? bishop_white : bishop_black;
+    const image = this.props.color === 'white' ? bishop_white : bishop_black;
     return (
       <div className='bishop' onClick={this.onPieceClick}>
         <img src={image} alt='bishop'/>

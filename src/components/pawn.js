@@ -9,7 +9,7 @@ class Pawn extends Piece {
   isOnStartPosition() {
     const whiteStartRow = '2';
     const blackStartRow = '7';
-    const color = this.getColor();
+    const color = this.props.color;
 
     return color === 'white'
       ? this.props.position[1] === whiteStartRow
@@ -18,7 +18,7 @@ class Pawn extends Piece {
 
   moves(row, col) {
     const moves = [];
-    const color = this.getColor();
+    const color = this.props.color;
 
     let forward = [], doubleForward = [], beatRight = [], beatLeft = [];
 
@@ -59,7 +59,7 @@ class Pawn extends Piece {
   }
 
   render() {
-    const image = this.getColor() === 'white' ? pawn_white : pawn_black;
+    const image = this.props.color === 'white' ? pawn_white : pawn_black;
     return (
       <div className='pawn' onClick={this.onPieceClick}>
         <img src={image} alt='pawn'/>

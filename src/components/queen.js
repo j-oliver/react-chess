@@ -9,7 +9,7 @@ class Queen extends Piece {
   moves(row, col) {
     const queen = this;
     const moves = [];
-    const color = this.getColor();
+    const color = this.props.color;
     const directions = {
       up: { y: -1, x: 0 },
       down: { y: 1, x: 0 },
@@ -60,7 +60,7 @@ class Queen extends Piece {
   }
 
   render() {
-    const image = this.getColor() === 'white' ? queen_white : queen_black;
+    const image = this.props.color === 'white' ? queen_white : queen_black;
     return (
       <div className='queen' onClick={this.onPieceClick}>
         <img src={image} alt='queen'/>
