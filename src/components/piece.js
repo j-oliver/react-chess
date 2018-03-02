@@ -20,7 +20,7 @@ class Piece extends Component {
 
   getAllMoves() {
     const pos = this.props.position;
-    const { row, col } = chessUtils.chessNotationToIndices(pos);
+    const [ row, col ] = chessUtils.chessNotationToIndices(pos);
 
     const movesCoordinates = this.moves(row, col); // defined in subclass
 

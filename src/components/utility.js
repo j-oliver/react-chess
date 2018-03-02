@@ -5,10 +5,10 @@ const chessUtils = {
   chessNotationToIndices: (chessnotation) => {
     const indices = chessnotation.split('');
 
-    return {
-      col: cols.indexOf(indices[0]),
-      row: rows.indexOf(indices[1]),
-    }
+    return [
+      rows.indexOf(indices[1]),
+      cols.indexOf(indices[0]),
+    ];
   },
 
   indicesToChessNotation: (row, col) => {
