@@ -65,8 +65,13 @@ img {
   position: relative;
 }
 
-.king, .queen, .rook, .knight, .bishop, .pawn {
+.king, .queen, .rook, .knight, .bishop, .pawn, .emptyfield {
   flex: 100% 1 0;
+}
+
+.emptyfield {
+  width: 100%;
+  height: 100%;
 }
 
 .highlight {
@@ -83,4 +88,30 @@ img {
 
 .dark {
   background-color: #444;
+}
+
+.capturedPieces {
+  height: 40px;
+  width: 80vh;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.capturedPieces_white, .capturedPieces_black {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  padding: 5px;
+}
+
+.capturedPieces_white > h3, .capturedPieces_black > h3 {
+  padding-right: 5px;
+}
+
+.capturedPieces_white > img, .capturedPieces_black > img {
+  width: 20px;
+  height: 20px;
+  padding: 2px 0px;
 }
