@@ -52,21 +52,36 @@ class Chessboard extends Component {
     const [fromY, fromX] = chessUtils.chessNotationToIndices(fromField);
     const [toY, toX] = chessUtils.chessNotationToIndices(toField);
     const piece = this.state.board[fromY][fromX];
-    const board = this.state.board.slice(0);
     const nextTurn = this.state.turn === 'white' ? 'black' : 'white';
+
+    // copy state variables to make changes
+    const board = this.state.board.slice(0);
     const whitesCapturedPieces = this.state.whitesCapturedPieces.slice(0);
     const blacksCapturedPieces = this.state.blacksCapturedPieces.slice(0);
+    const moves = this.state.moves.slice(0);
 
+    let captured = false;
+    const check = false; // TODO
+
+
+    // determine if a piece was captured
     if (board[toY][toX] !== '') {
       const pieceCaptured = board[toY][toX];
       const colorCaptured = chessUtils.getPieceColor(pieceCaptured);
       if (colorCaptured === 'white') {
         blacksCapturedPieces.push(pieceCaptured);
+        captured = true;
       } else if (colorCaptured === 'black') {
         whitesCapturedPieces.push(pieceCaptured);
+        captured = true;
       }
     }
 
+    // log the move made
+    const move = this.getLoggedMove(piece, fromField, toField, captured, check);
+    moves.push(move);
+
+    // alter the board according to the move
     board[fromY][fromX] = '';
     board[toY][toX] = piece;
 
@@ -78,6 +93,7 @@ class Chessboard extends Component {
         color: ''
       },
       highlightedFields: [],
+      moves,
       whitesCapturedPieces,
       blacksCapturedPieces,
       board,
