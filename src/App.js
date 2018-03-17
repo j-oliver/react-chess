@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
 import Chessboard from './components/chessboard';
-import ColorDecider from './colordecider';
+import Setup from './setup';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      playerDecidedColor: false,
-      playerColor: ''
+      opponent: '',
+      playerColor: '',
     }
   }
 
-  _decideColor(color) {
-    this.setState({
-      playerDecidedColor: true,
-      playerColor: color
-    });
+  _start(opponent, playerColor) {
+    this.setState({ opponent, playerColor })
   }
 
   render() {
@@ -25,9 +22,9 @@ class App extends Component {
       <div className="App">
         <h1 className='title'>React Chess</h1>
         {
-          this.state.playerDecidedColor
-          ? <Chessboard color={this.state.playerColor}/>
-          : <ColorDecider decideColor={(color) => this._decideColor(color)}/>
+          (this.state.opponent && this.state.playerColor)
+          ? <Chessboard opponent={this.state.opponent} color={this.state.playerColor}/>
+          : <Setup start={(opponent, playerColor) => this._start(opponent, playerColor)}/>
         }
       </div>
     );
