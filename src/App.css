@@ -1,43 +1,51 @@
-html {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #e0eafc;
-}
-
 img {
   width: 100%;
-  height: 100%;
-}
+  height: 100%; }
 
-.colordecider {
-  text-align: center;
+.setup {
+  padding: 50px;
   margin: 0 auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.colordecider_title {
-  width: 100%;
-  margin-bottom: 50px;
-}
-
-.colordecider_white, .colordecider_black {
-  width: 200px;
-  height: 200px;
-  margin: 20px;
-  border: 2px dashed black;
-}
-
-.colordecider_white:hover, .colordecider_black:hover {
-  background-color: #fefefe;
-}
+  background-color: white;
+  max-width: 600px;
+  border-radius: 10px; }
+  .setup__option {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .setup__option__title {
+      font-size: 26px;
+      width: 50%; }
+    .setup__option__options {
+      display: flex;
+      width: 50%; }
+    .setup__option__chooser {
+      display: flex;
+      min-width: 50px;
+      min-height: 50px;
+      margin: 20px;
+      border: 2px solid black; }
+      .setup__option__chooser p {
+        padding: 0px 10px; }
+  .setup__submit {
+    width: 100px;
+    font-size: 22px;
+    line-height: 50px;
+    text-align: center;
+    margin: 40px auto 0px auto;
+    border: 2px solid black;
+    cursor: pointer; }
+  .setup__submit:hover {
+    background-color: #b3dfff; }
+  .setup__notifier {
+    margin: 0;
+    text-align: center;
+    color: red;
+    font-size: 16px; }
+  .setup .selected {
+    background-color: #b3dfff; }
 
 .title {
-  text-align: center;
-}
+  text-align: center; }
 
 .chessboard {
   display: flex;
@@ -45,50 +53,33 @@ img {
   border: black 12px solid;
   margin: 0 auto;
   width: 80vh;
-  height: 80vh;
-}
-
-.chessboard__row {
-  display: flex;
-  flex-flow: row nowrap;
-  height: 12.5%;
-  width: 100%;
-}
-
-.field {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 12.5%;
-  text-align: center;
-  position: relative;
-}
-
-.king, .queen, .rook, .knight, .bishop, .pawn, .emptyfield {
-  flex: 100% 1 0;
-}
-
-.emptyfield {
-  width: 100%;
-  height: 100%;
-}
-
-.highlight {
-  position: absolute;
-  width: 30%;
-  height: 30%;
-  border-radius: 50%;
-  background-color: cornflowerblue;
-}
-
-.light {
-  background-color: white;
-}
-
-.dark {
-  background-color: #444;
-}
+  height: 80vh; }
+  .chessboard__row {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 12.5%;
+    width: 100%; }
+    .chessboard__row .light {
+      background-color: white; }
+    .chessboard__row .dark {
+      background-color: #444; }
+    .chessboard__row__field {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 12.5%;
+      position: relative; }
+      .chessboard__row__field .highlight {
+        position: absolute;
+        width: 30%;
+        height: 30%;
+        border-radius: 50%;
+        background-color: #b3dfff; }
+      .chessboard__row__field .king, .chessboard__row__field .queen, .chessboard__row__field .rook, .chessboard__row__field .knight, .chessboard__row__field .bishop, .chessboard__row__field .pawn, .chessboard__row__field .emptyfield {
+        flex: 100% 1 0; }
+      .chessboard__row__field .emptyfield {
+        width: 100%;
+        height: 100%; }
 
 .capturedPieces {
   height: 40px;
@@ -96,22 +87,15 @@ img {
   margin: 0 auto;
   display: flex;
   flex-flow: row;
-  justify-content: space-between;
-}
-
-.capturedPieces_white, .capturedPieces_black {
-  display: flex;
-  align-items: center;
-  width: 50%;
-  padding: 5px;
-}
-
-.capturedPieces_white > h3, .capturedPieces_black > h3 {
-  padding-right: 5px;
-}
-
-.capturedPieces_white > img, .capturedPieces_black > img {
-  width: 20px;
-  height: 20px;
-  padding: 2px 0px;
-}
+  justify-content: space-between; }
+  .capturedPieces__color {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    padding: 5px; }
+  .capturedPieces__color > h3 {
+    padding-right: 5px; }
+  .capturedPieces__color > img {
+    width: 20px;
+    height: 20px;
+    padding: 2px 0px; }
