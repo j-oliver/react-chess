@@ -104,15 +104,13 @@ class Chessboard extends Component {
     const color = chessUtils.getPieceColor(piece);
 
     // check if field selected isn't a piece of the player's color
-    if(this.state.selectedPiece.color !== color && this.state.selectedPiece.piece !== undefined) {
+    // check if field clicked is a valid move
+    if(this.state.selectedPiece.color !== color &&
+       this.state.selectedPiece.piece !== undefined &&
+       this.state.highlightedFields.indexOf(position) !== -1) {
       const fromField = this.state.selectedPiece.position;
-      const toField = position;
 
-      // check if field clicked is a valid move
-      if(this.state.highlightedFields.indexOf(toField) !== -1){
-        // make the move
-        this.makeMove(fromField, toField);
-      }
+      this.makeMove(fromField, position);
     } else {
       // select a new piece
       this.setState({
