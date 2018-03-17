@@ -41,7 +41,7 @@ class Field extends Component {
 
   render(){
     return (
-      <div className={`field ${this.props.fieldColor}`}>
+      <div className={`chessboard__row__field ${this.props.fieldColor}`}>
         { this.getPiece() }
         {
           this.props.highlighted
