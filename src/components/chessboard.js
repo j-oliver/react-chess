@@ -167,7 +167,7 @@ class Chessboard extends Component {
 
   render() {
     return (
-      <div className='game'>
+      <div>
         <div className='chessboard'>
           { this.getBoard() }
         </div>
