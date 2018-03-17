@@ -40,6 +40,14 @@ class Chessboard extends Component {
     ];
   }
 
+  getLoggedMove(piece, pieceFrom, pieceTo, pieceCaptured, checkAfter) {
+    const captured = pieceCaptured ? 'x' : '';
+    const check = checkAfter ? '+' : '';
+    const name = (piece === 'p' || piece === 'P') ? piece.toLowerCase() : piece.toUpperCase();
+
+    return name + pieceFrom + pieceTo + captured + check;
+  }
+
   makeMove(fromField, toField){
     const [fromY, fromX] = chessUtils.chessNotationToIndices(fromField);
     const [toY, toX] = chessUtils.chessNotationToIndices(toField);
