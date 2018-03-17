@@ -49,11 +49,11 @@ class CapturedPieces extends Component {
   render() {
     return (
       <div className='capturedPieces'>
-        <div className='capturedPieces_white'>
+        <div className='capturedPieces__color'>
           <h3>White: </h3>
           { this.getCapturedPieces('white') }
         </div>
-        <div className='capturedPieces_black'>
+        <div className='capturedPieces__color'>
           <h3>Black: </h3>
           { this.getCapturedPieces('black') }
         </div>
